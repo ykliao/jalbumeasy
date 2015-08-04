@@ -1,0 +1,46 @@
+#!/bin/bash
+
+##################################################################################################
+# Shell script that:
+#    1. Finds the user's document directory and creates an AlbumEasy subdirectory
+#    2. Copies the example files to the new directory
+#    3. Generates a 'desktop' shortcut file
+#    4. Copies the shortcut to the user's desktop
+##################################################################################################
+
+DOC_DIR=$HOME
+                                                        #use XDG to get the documents directory
+if [ -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs ];
+then
+  source ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs
+  DOC_DIR=$XDG_DOCUMENTS_DIR
+fi
+DOC_DIR=${DOC_DIR}/AlbumEasy
+
+VER=$(cat VERSION)                                         #get contents of the version file
+
+echo Creating directory $DOC_DIR
+mkdir -p $DOC_DIR
+echo Copying examples to $DOC_DIR
+cp -r $PWD/examples $DOC_DIR
+
+echo Creating desktop shortcut
+echo "[Desktop Entry]"                         >  temp.desktop
+echo "Type=Application"                        >> temp.desktop
+echo "Version=1.0"                             >> temp.desktop
+echo "Name=AlbumEasy ${VER}"                   >> temp.desktop
+echo "Comment=Program for the design and layout of stamp album pages"  >> temp.desktop
+echo "Icon=${PWD}/AlbumEasyIcon48x48.png"      >> temp.desktop
+echo "Exec=${PWD}/AlbumEasy"                   >> temp.desktop
+echo "Path=${PWD}"                             >> temp.desktop
+echo "Categories=Utility;Application;"         >> temp.desktop
+chmod a+x temp.desktop
+mv temp.desktop ~/Desktop/AlbumEasy.desktop
+
+
+
+
+
+
+
+

@@ -1,0 +1,74 @@
+<html>
+<head>
+  <style type="text/css">
+    body {font-family:Arial,Helvetica,Sans-serif;font-size:12px;}
+    h1   {font-size:xx-large;}         /* for some reason px sizes appear to be broken on h* tags */
+    h2   {font-size:large;}
+  </style>
+</head>
+<body>
+
+
+<h1>Command examples</h1>
+<br />
+
+<p>
+<a name="pagestartvar"></a>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold;">PAGE_START_VAR command</td>
+</tr></table>
+</p>
+<p style="margin-left:4px;">
+  This command adjusts the spacing of a page independently from the rest of the
+  album.<br />
+  For example an album was created with ALBUM_PAGES_SPACING (5.0 5.0) which set the page spacing
+  to 5.0mm in both the horizontal and vertical directions. One of the pages overflowed
+  the bottom border as shown by the left image.
+  To correct the page, the spacing of the whole album could have been changed or the set of stamps could
+  have been split onto two pages.
+  Alternatively as illustrated in the image on the right, the spacing of the offending page can
+  be adjusted independently. A PAGE_START_VAR (5.0 2.0) command reduced the vertical spacing
+  to 2.0mm allowing all stamps to fit on the page.
+
+</p>
+<p style="margin-left:36px;">
+  <img src="images/cmnds_page_start_var.png" width="426" height="312" alt="" border="0"><br />
+</p>
+
+<p>
+<a name="rowalign"></a>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold;">ROW_ALIGN_TOP, ROW_ALIGN_MIDDLE and ROW_ALIGN_BOTTOM commands</td>
+</tr></table>
+</p>
+<p style="margin-left:4px;">
+  The following diagram illustrates the affect that each of these commands has on the vertical row alignment:
+</p>
+<p style="margin-left:36px;">
+  <img src="images/cmnds_row_alignment.png" width="490" height="364" alt="" border="0"><br />
+</p>
+
+
+
+
+<p>
+<a name="stampaddblank"></a>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold;">STAMP_ADD_BLANK command</td>
+</tr></table>
+</p>
+<p style="margin-left:4px;">
+  The following diagram illustrates how this command can be used to insert spacing between stamps in a row:
+</p>
+<p style="margin-left:36px;">
+  <img src="images/cmnds_stamp_add_blank.png" width="426" height="264" alt="" border="0"><br />
+</p>
+
+
+
+
+</body>
+</html>

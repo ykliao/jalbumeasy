@@ -1,0 +1,325 @@
+##################################################################################################
+# Test file designed to exercise all commands supported by AlbumEasy V3.0
+# UTF8 TEXT FORMAT
+#
+# The first section of this file should produce an identical PDF to that produced by V2.31 of
+# AlbumEasy processing V231Compliance.txt with the following exception:
+#           ROW_ALIGN_TOP: Should be the default, V2.31 incorrectly defaults to ROW_ALIGN_BOTTOM
+#       ALBUM_PAGES_TITLE: V2.31 incorrectly applies page specific spacing to page titles.
+#                          This is fixed in later versions which will correctly place the title in
+#                          the same position on all pages in an album.
+#            Text spacing: There are minor variations in the vertical text spacing between the
+#                          version of libharu used in V2.31 and the newer version of libharu
+#                          used in AlbumEasy V3.0 and later
+##################################################################################################
+
+ALBUM_PAGES_SIZE     (210.0 297.0)
+ALBUM_PAGES_MARGINS  (25.0 10.0 15.0 15.0)
+ALBUM_PAGES_MARGINSE (10.0 25.0 15.0 15.0)
+ALBUM_PAGES_BORDER   (0.5 0.1 1.0)
+ALBUM_PAGES_SPACING  (6.0 3.0)                           #set spacing horizontal:6mm vertical:3mm
+ALBUM_PAGES_TITLE    (TB 16 "V3.0 Compliance Test - UTF-8 Input File")
+
+PAGE_START
+
+PAGE_TEXT_CENTRE (HN 10 "(Helvetica Normal) Centred Text")
+PAGE_TEXT_CENTRE (HN 10 "(Helvetica Normal) Centred Text, containing a new line here:\n"\
+                        "This line of text should be wider than the width of a page,  so, "\
+                        "being centred, it will be clipped to fit the page." )
+
+PAGE_TEXT        (HN 10 "(Helvetica Normal) Normal Text, containing a new line here:\n"\
+                        "This line of text should be wider than the width of a page causing "\
+                        "it to flow onto the next line. To make it more interesting, "\
+                        "it should contain a backslash here:\\ and one in quotes here:\"\\\" - The End!" )
+
+
+PAGE_TEXT (TB 8 "(Times Bold) Blank text fields:")
+PAGE_TEXT (HN 8 "The empty PAGE_TEXT below this line should draw an empty line.")
+PAGE_TEXT (HN 8 "")
+PAGE_TEXT (HN 8 "The empty PAGE_TEXT above this line should draw an empty line.")
+
+PAGE_TEXT (HN 8 "The PAGE_TEXT containing a single space below this line should draw an empty line.")
+PAGE_TEXT (HN 8 " ")
+PAGE_TEXT (HN 8 "The PAGE_TEXT containing a single space above this line should draw an empty line.")
+
+PAGE_TEXT (HN 8 "The PAGE_TEXT containing a new-line character below this line should draw two empty lines (the blank line and the new line).")
+PAGE_TEXT (HN 8 "\n")
+PAGE_TEXT (HN 8 "The PAGE_TEXT containing a new-line character above this line should draw two empty lines.")
+
+PAGE_TEXT_CENTRE (HS 14 "Currency Symbols")
+PAGE_TEXT (TN 10 "The currency symbols here are UTF8 so should display correctly in non-compatibility-mode "\
+                  "i.e UTF8, hence will not display correctly in compatibility-mode.")
+PAGE_TEXT (TN 14 "Pound:£ Euro:€")
+
+PAGE_START
+
+PAGE_TEXT_CENTRE (TN 8 "Stamp row fixed 4mm spacing default (ROW_ALIGN_TOP) vertical alignment before issuing a ROW_ALIGN command.")
+
+ROW_START_FS (HN 6 0.1 4.0)
+STAMP_ADD (26.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD (26.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD (26.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD (26.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD (26.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+PAGE_TEXT_CENTRE (TN 8 "Same stamps after issuing a ROW_ALIGN_BOTTOM command.")
+ROW_ALIGN_BOTTOM
+
+ROW_START_FS (HN 6 0.1 4.0)
+STAMP_ADD (26.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD (26.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD (26.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD (26.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD (26.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+PAGE_TEXT_CENTRE (TN 8 "Same stamps after issuing a ROW_ALIGN_TOP command.")
+ROW_ALIGN_TOP
+
+ROW_START_FS (HN 6 0.1 4.0)
+STAMP_ADD (26.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD (26.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD (26.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD (26.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD (26.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+
+PAGE_TEXT (TN 8 "Stamp row fixed 4mm spacing:")
+
+ROW_START_FS (HN 6 0.1 4.0)
+STAMP_ADD          (20.0 24.0 "1d" "red" "perf 12"    ""  ""  "" )
+STAMP_ADD_TRIANGLE (28.0 26.0 "2d" "red" "perf 12"    ""  ""  "a")
+STAMP_ADD          (20.0 30.0 "3d" "red" "perf 12"    ""  "a" "b")
+STAMP_ADD          (20.0 32.0 "4d" "red" "perf 12"    "a" "b" "c")
+
+PAGE_TEXT (TN 8 "Stamp row Justified:")
+
+ROW_START_JS (HN 6 0.1)
+STAMP_ADD          (20.0 24.0 "1d" "red" "perf 12"    "a" ""  "" )
+STAMP_ADD_TRIANGLE (28.0 26.0 "2d" "red" "perf 12"    ""  "b" "")
+STAMP_ADD          (20.0 30.0 "3d" "red" "perf 12"    ""  ""  "c")
+STAMP_ADD          (20.0 32.0 "4d" "red" "perf 12"    "a" "b" "c")
+
+PAGE_TEXT (TN 8 "Stamp row Equal Spacing (drop off the page):")
+
+ROW_START_ES (HN 6 0.1)
+STAMP_ADD          (20.0 24.0 "1d" "red" "perf 12"    ""  ""  "" )
+STAMP_ADD_TRIANGLE (28.0 26.0 "2d" "red" "perf 12"    ""  ""  "a")
+STAMP_ADD          (20.0 30.0 "3d" "red" "perf 12"    ""  "a" "b")
+STAMP_ADD          (20.0 32.0 "4d" "red" "perf 12"    "a" "b" "c")
+
+
+
+PAGE_START_VAR (8.0 1.5)                           #set page spacing overide for this page horizontal:8mm vertical:1.5mm
+ROW_ALIGN_TOP
+PAGE_TEXT_CENTRE (TN 8 "Identical to the previous page, but because of spacing overide it should not drop off the page (on V2.31 title spacing is affected).")
+
+ROW_START_FS (HN 6 0.1 4.0)
+STAMP_ADD (26.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD (26.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD (26.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD (26.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD (26.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+PAGE_TEXT_CENTRE (TN 8 "Same stamps after issuing a ROW_ALIGN_BOTTOM command.")
+ROW_ALIGN_BOTTOM
+
+ROW_START_FS (HN 6 0.1 4.0)
+STAMP_ADD (26.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD (26.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD (26.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD (26.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD (26.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+PAGE_TEXT_CENTRE (TN 8 "Same stamps after issuing a ROW_ALIGN_TOP command.")
+ROW_ALIGN_TOP
+
+ROW_START_FS (HN 6 0.1 4.0)
+STAMP_ADD (26.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD (26.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD (26.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD (26.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD (26.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+
+PAGE_TEXT (TN 8 "Stamp row fixed 4mm spacing:")
+
+ROW_START_FS (HN 6 0.1 4.0)
+STAMP_ADD          (20.0 24.0 "1d" "red" "perf 12"    ""  ""  "" )
+STAMP_ADD_TRIANGLE (28.0 26.0 "2d" "red" "perf 12"    ""  ""  "a")
+STAMP_ADD          (20.0 30.0 "3d" "red" "perf 12"    ""  "a" "b")
+STAMP_ADD          (20.0 32.0 "4d" "red" "perf 12"    "a" "b" "c")
+
+PAGE_TEXT (TN 8 "Stamp row Justified:")
+
+ROW_START_JS (HN 6 0.1)
+STAMP_ADD          (20.0 24.0 "1d" "red" "perf 12"    "a" ""  "" )
+STAMP_ADD_TRIANGLE (28.0 26.0 "2d" "red" "perf 12"    ""  "b" "")
+STAMP_ADD          (20.0 30.0 "3d" "red" "perf 12"    ""  ""  "c")
+STAMP_ADD          (20.0 32.0 "4d" "red" "perf 12"    "a" "b" "c")
+
+PAGE_TEXT (TN 8 "Stamp row Equal Spacing (should not drop off the page):")
+
+ROW_START_ES (HN 6 0.1)
+STAMP_ADD          (20.0 24.0 "1d" "red" "perf 12"    ""  ""  "" )
+STAMP_ADD_TRIANGLE (28.0 26.0 "2d" "red" "perf 12"    ""  ""  "a")
+STAMP_ADD          (20.0 30.0 "3d" "red" "perf 12"    ""  "a" "b")
+STAMP_ADD          (20.0 32.0 "4d" "red" "perf 12"    "a" "b" "c")
+
+
+PAGE_START
+PAGE_TEXT_CENTRE (TN 8 "Back to default page spacing various stamp layouts.")
+
+ROW_START_JS (HN 6 0.1)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD          (28.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD          (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD          (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+ROW_START_ES (HN 6 0.1)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD_TRIANGLE (28.0 30.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD          (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD          (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+ROW_START_FS (HN 6 0.1 6)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD_TRIANGLE (28.0 30.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADDX         (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "" "aa" "bb" "cc")
+STAMP_ADDX         (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "" "aa" "bb" "cc")
+
+ROW_ALIGN_BOTTOM
+
+ROW_START_JS (HN 6 0.1)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD          (28.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD          (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD          (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+ROW_START_ES (HN 6 0.1)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD_TRIANGLE (28.0 30.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD          (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD          (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+ROW_START_FS (HN 6 0.1 6)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD_TRIANGLE (28.0 30.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADDX         (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "" "aa" "bb" "cc")
+STAMP_ADDX         (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "" "aa" "bb" "cc")
+
+
+PAGE_START_VAR (18.0 3.0)        #set page spacing overide for this page horizontal:18mm vertical:3mm
+ROW_ALIGN_TOP
+
+PAGE_TEXT_CENTRE (TN 8 "Identical to the previous page, but with horizontal spacing overide it is too wide for the page.")
+
+ROW_START_JS (HN 6 0.1)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD          (28.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD          (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD          (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+ROW_START_ES (HN 6 0.1)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD_TRIANGLE (28.0 30.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD          (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD          (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+ROW_START_FS (HN 6 0.1 6)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD_TRIANGLE (28.0 30.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADDX         (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "" "aa" "bb" "cc")
+STAMP_ADDX         (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "" "aa" "bb" "cc")
+
+ROW_ALIGN_BOTTOM
+
+ROW_START_JS (HN 6 0.1)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD          (28.0 36.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD          (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD          (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+ROW_START_ES (HN 6 0.1)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD_TRIANGLE (28.0 30.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADD          (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "")
+STAMP_ADD          (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "")
+
+ROW_START_FS (HN 6 0.1 6)
+STAMP_ADD          (28.0 30.0 "1d" "red & black" "perf 12"    "" "1" "")
+STAMP_ADD          (28.0 34.0 "2d" "red & black" "perf 12"    "" "2" "")
+STAMP_ADD_TRIANGLE (28.0 30.0 "3d" "red & black" "perf 12"    "" "3" "")
+STAMP_ADDX         (28.0 34.0 "4d" "red & black" "perf 12"    "" "4" "" "aa" "bb" "cc")
+STAMP_ADDX         (28.0 30.0 "5d" "red & black" "perf 12"    "" "5" "" "aa" "bb" "cc")
+
+PAGE_START
+PAGE_TEXT_CENTRE    (TB 16 "--- V3.0 Specific starts here ---")
+
+
+
+PAGE_TEXT_CENTRE (HN 10 "\nROW_ALIGN_TOP")
+ROW_ALIGN_TOP
+ROW_START_FS (HN 4 0.1 6.0)
+STAMP_ADD_TRIANGLE     (22   11.0   "1c" "brown" "" "" "sg 12"  "")
+STAMP_ADD              (10.0 12.0   "2c" "green" "" "" "sg 13"  "")
+STAMP_ADD_DIAMOND      (22   17.0   "3c" "red"   "" "" "sg 14"  "")
+STAMP_ADD              (10.0 12.0   "4c" "black" "" "" "sg 15"  "" )
+STAMP_ADD_TRIANGLE_INV (22   11.0   "5c" "blue"  "" "" "sg 16"  "")
+
+PAGE_TEXT_CENTRE (HN 10 "\nROW_ALIGN_MIDDLE")
+ROW_ALIGN_MIDDLE
+ROW_START_FS (HN 4 0.1 6.0)
+STAMP_ADD_TRIANGLE     (22   11.0   "1c" "brown" "" "" "sg 12"  "")
+STAMP_ADD              (10.0 12.0   "2c" "green" "" "" "sg 13"  "")
+STAMP_ADD_DIAMOND      (22   17.0   "3c" "red"   "" "" "sg 14"  "")
+STAMP_ADD              (10.0 12.0   "4c" "black" "" "" "sg 15"  "" )
+STAMP_ADD_TRIANGLE_INV (22   11.0   "5c" "blue"  "" "" "sg 16"  "")
+
+ROW_ALIGN_BOTTOM
+PAGE_TEXT_CENTRE (HN 10 "\nROW_ALIGN_BOTTOM")
+ROW_START_FS (HN 4 0.1 6.0)
+STAMP_ADD_TRIANGLE     (22   11.0   "1c" "brown" "" "" "sg 12"  "")
+STAMP_ADD              (10.0 12.0   "2c" "green" "" "" "sg 13"  "")
+STAMP_ADD_DIAMOND      (22   17.0   "3c" "red"   "" "" "sg 14"  "")
+STAMP_ADD              (10.0 12.0   "4c" "black" "" "" "sg 15"  "" )
+STAMP_ADD_TRIANGLE_INV (22   11.0   "5c" "blue"  "" "" "sg 16"  "")
+
+PAGE_START
+
+ALBUM_DEFINE_FONT(PENGUIN  "Penguin Attack"      )
+ALBUM_DEFINE_FONT(HEBREW   "DejaVu SANS"   CP1255)
+ALBUM_DEFINE_FONT(CYRILLIC "DejaVu SANS"   CP1251)
+
+
+PAGE_TEXT (PENGUIN 16 "Penguin Attack is a fancy font. But not to everyone's taste." )
+
+PAGE_TEXT (HN 14 "The far more sedate Helvetica will probably be of more use to philatelists!")
+
+PAGE_TEXT (CYRILLIC 14 "Cyrillic (CP1251):АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ")
+
+PAGE_TEXT (HEBREW 14 "Hebrew(CP1255):תשרקצץפףעסנןמםלכךיטחזוהדגבא")
+
+#PAGE_TEXT (HEBREW 14 "CP1255 Hebrew:תשרקצץפףעסנןמםלכךיטחזוהדגבא")
+
+
+PAGE_TEXT (HEBREW 12 "שלום מה שלומך")
+
+PAGE_TEXT (HEBREW 12 "CP1255 Hello, how are you?:בְּרֵאשִׁית, בָּרָא אֱלֹהִים")
+
+ROW_START_FS (HEBREW 8 0.1 6.0)
+STAMP_ADD (28.0 32.0 "1d" "red & black" "perf 12"  " והד "  "1"    " גבא")
+STAMP_ADD (28.0 32.0 "2d" "red & black" "perf 12"  " והד "  "2"    " גבא")
+STAMP_ADD (28.0 32.0 "3d" "red & black" "perf 12"  " והד "  "3"    " גבא")
+STAMP_ADD (28.0 32.0 "4d" "red & black" "perf 12"  " והד "  "4"    " גבא")
+

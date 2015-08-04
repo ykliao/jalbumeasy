@@ -1,0 +1,155 @@
+#!/bin/bash
+
+##################################################################################################
+# Makes               Release version
+# Makes RELEASE        "       "
+# Makes SETUP         Release version and packaged installation
+# Makes INSTALL        "       "       "   "        "
+# Makes DEBUG         Debug version
+# Makes CLEAN         Remove generated files and intermediate build files
+# Makes DISTCLEAN     Also removes the application and any other generated files e.g. setup etc.
+#
+# Packaged installation generates either a Windows exectutable on Windows or a compressed
+# tgz archive on Linux
+#
+##################################################################################################
+
+APP_NAME="AlbumEasy"
+APP_VER_FILE="aeasy_version.h"
+
+                                                                      #Windows only variables, ignored when building on Linux
+WIN_QT_LOCATION="c:/Qt/Qt5.1.0/5.1.0/mingw48_32/"                 #location of Qt DLLs to be included in the installation
+WIN_INNO_SETUP=/cygdrive/c/Program\ Files/Inno\ Setup\ 5/ISCC.exe     #full path to the Inno Setup compiler
+
+                              #for case-insensitive comparison, convert parameters to uppercase
+VAL1=`echo $1 | tr  "[:lower:]" "[:upper:]"`
+VAL2=`echo $2 | tr  "[:lower:]" "[:upper:]"`
+
+                                                              #extract the version information from the header file
+APP_VER_MAJOR=`grep "^#define *VER_MAJOR" <$APP_VER_FILE | sed 's/#define *VER_MAJOR *//'`
+APP_VER_MINOR=`grep "^#define *VER_MINOR" <$APP_VER_FILE | sed 's/#define *VER_MINOR *//'`
+APP_VER_REV=`  grep "^#define *VER_REV"   <$APP_VER_FILE | sed 's/#define *VER_REV *\"\(.*\)\"/\1/'`
+
+APP_VER_NAME=${APP_NAME}" "${APP_VER_MAJOR}"."${APP_VER_MINOR}${APP_VER_REV}
+APP_SETUP_NAME=${APP_NAME}"SetupV"${APP_VER_MAJOR}"."${APP_VER_MINOR}${APP_VER_REV}
+
+
+SETUP_DIR="setup"
+BUILD_DIR="build"
+PRO_FILE="${APP_NAME}.pro"
+MAKE_CMND=make
+                                                                            #create a VERSION file
+echo "${APP_VER_MAJOR}.${APP_VER_MINOR}${APP_VER_REV}">${SETUP_DIR}/VERSION
+
+QMAKE_OPTNS="CONFIG+=release"
+BUILD_SUBDIR=${BUILD_DIR}/release
+
+if [ "$VAL1" = "DEBUG" ]
+then
+  QMAKE_OPTNS="CONFIG+=debug"
+  BUILD_SUBDIR=${BUILD_DIR}/debug
+fi
+
+QMAKE_CMND="qmake $QMAKE_OPTNS ../${PRO_FILE}"
+
+setup=0
+clean=0
+distclean=0
+cygwin=0
+linux64=0
+
+if [ "$VAL1" = "SETUP" ] ||  [ "$VAL1" = "INSTALL" ]
+then
+ setup=1
+fi
+
+if [ "$VAL1" = "CLEAN" ] || [ "$VAL1" = "DISTCLEAN" ]
+then
+ clean=1
+ if [ "$VAL1" = "DISTCLEAN" ]
+ then
+  distclean=1
+ fi
+fi
+
+OS=`uname -o`
+
+if [ "$OS" = "Cygwin" ]            #check if the we are running under Cygwin
+then
+ cygwin=1
+ APP_NAME=${APP_NAME}.exe
+ MAKE_CMND=mingw32-make           #QMake V3.0 generates Make files that require the Mingw Make
+else
+  if [ $(uname -m | grep -c '64') -ge 1 ]              #check if running on 64 bit Linux
+  then
+    linux64=1
+    APP_SETUP_NAME=${APP_SETUP_NAME}_64bit
+  else
+    linux64=0
+    APP_SETUP_NAME=${APP_SETUP_NAME}_32bit
+  fi
+fi
+
+APP_PATH=${BUILD_SUBDIR}/${APP_NAME}
+
+set -e             #exit the script immediately if any commands return non-zero
+
+################################################################################
+# build directories - create if necessary
+################################################################################
+
+if [ $clean -eq 0 ]             #if not clean, then create the build directory
+then
+ if !(test -d $BUILD_DIR) then mkdir $BUILD_DIR
+ fi
+fi
+
+################################################################################
+# build the correct configuration
+################################################################################
+
+if [ $clean -ne 0 ]               #cleaning
+then
+  if (test -d $BUILD_DIR) then rm -rf $BUILD_DIR
+  fi
+
+  rm -f *~ core *.core
+  rm -f errs.txt*
+  rm ${SETUP_DIR}/VERSION
+  rm -rf ${SETUP_DIR}/linux/TAR/*
+
+  if [ $distclean -ne 0 ]         #distclean => remove the application
+  then
+    rm -f $APP_NAME
+    rm -f ${APP_SETUP_NAME}.exe
+    rm -f ${APP_SETUP_NAME}.tgz
+  fi
+else                              #building
+  if (test -d $BUILD_DIR)
+  then
+    cd $BUILD_DIR
+    $QMAKE_CMND
+    $MAKE_CMND
+    cd ..
+  fi
+  if (test -e $APP_PATH)
+  then
+    cp $APP_PATH .
+  fi
+fi
+
+if [ $setup -ne 0 ]               #build setup
+then
+  PWDIR=`pwd`                     #pushd and popd are bash extensions not supported in all shells
+  if [ $cygwin -ne 0 ]
+  then                                                                                       #build the Windows Installer
+    cd ${SETUP_DIR}/windows
+    "$WIN_INNO_SETUP" AlbumEasy.iss -f${APP_SETUP_NAME} -dAppVersionName="${APP_VER_NAME}" -dQtLocation=${WIN_QT_LOCATION}
+  else                                                                                          #build the Linux Installer
+    cd ${SETUP_DIR}/linux
+    source AlbumEasyLinuxPackager ${APP_SETUP_NAME}
+  fi
+  cd $PWDIR
+fi
+
+

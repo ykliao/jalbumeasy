@@ -1,0 +1,112 @@
+<html>
+<head>
+  <style type="text/css">
+    body {font-family:Arial,Helvetica,Sans-serif;font-size:12px;}
+    h1   {font-size:xx-large;}         /* for some reason px sizes appear to be broken on h* tags */
+    h2   {font-size:large;}
+    .important {color:#b22222; font-weight:bold;}
+  </style>
+</head>
+<body>
+
+<h1>AlbumEasy - Getting Started</h1>
+Albums are defined by a set of commands in an album definition file.
+This is a regular text file which is created by means of a
+text editor or word-processor. AlbumEasy processes these commands to generate an
+Album in PDF format for later viewing and printing.<br /><br />
+
+Although it is possible to use almost any text editor such as the very basic Windows Notepad,
+it will be far more productive to use one of the many excellent text editors that are
+available free on the Web. A few examples are <a href="http://www.jedit.org">jEdit</a> and
+<a href="http://www.geany.org/">Geany</a> which are both cross platform,
+or the Windows only <a href="http://www.pnotepad.org/">Programmer's Notepad</a>.
+Alternatively a word-processor may be used in which case it is important to enure that the
+file is saved in text only format.
+<br /><br />
+
+A PDF viewer such as the ubiquitous Adobe Acrobat is also necessary for viewing and printing the
+generated Albums. In most cases the user is likely to have this already installed on their system,
+If not it may be downloaded free of charge from
+<a href="http://get.adobe.com/uk/reader/">http://get.adobe.com/uk/reader/</a><br />
+<br />
+<span class="important">NOTE:</span> When printing from Acrobat, please ensure that the <i>"Shrink oversized pages to
+paper size"</i>, and <i>"Expand small pages to paper size"</i> options are not checked in the print dialogue
+box. Otherwise items on the page may be printed with the wrong dimensions.
+<br />
+
+
+<p>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td><h2>CREATING A FIRST ALBUM</h2></td>
+</tr></table>
+</p>
+In order to create an Album using the provided sample file please follow these simple steps:
+<ol>
+  <li>
+    Press the <i><b>Open</b></i> button to display the <i>File Open</i> dialogue box.
+    Use this to navigate to the <i>examples</i> folder which should have
+    been created when AlbumEasy was installed and then open the <i>AlbumSample.txt</i> file.
+  </li>
+  <li>
+    After the <i>AlbumSample.txt</i> file has been loaded press the <i><b>Generate</b></i> button
+    to create an album called AlbumSample.pdf that may now be viewed via Adobe Acrobat or a
+    similar PDF viewer.
+  </li>
+</ol>
+</p>
+
+<p>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td><h2>CREATING A CUSTOM ALBUM</h2></td>
+</tr></table>
+</p>
+<p>
+<ol>
+  <li>
+  The easiest way of creating a new album is to copy and modify an existing text file such as the
+  provided example: AlbumSample.txt.   After copying the new file it should be given an
+  appropriate name e.g. Canada.txt.
+  </li>
+  <li>
+  The new text file is edited with a text editor using any of the commands
+  listed in the <a href="commands.html">Commands</a> section of this help file to specify the album.
+  </li>
+  <li>
+  After the file is saved it is opened with AlbumEasy which then generates the new album as a
+  PDF file.
+  </li>
+</ol>
+<br />
+</p>
+
+<p>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td><h2>ADVANCED - USING FONTS</h2></td>
+</tr></table>
+</p>
+AlbumEasy provides a number of built-in <a href="fonts.html">fonts</a> which are used for creating
+text. These built-in fonts contain the characters in the
+<a href="codepages.html#latin1">Latin 1</a> character set which should be sufficient for
+displaying text in most Western European languages.
+
+In addition to the built in fonts AlbumEasy is also able to display text using many of the fonts
+installed on a user's system. This may be purely for aesthetic purposes or when necessary to display
+international languages.<br />
+
+The <i>examples</i> folder contains additional sample files illustrating this usage:
+<ul>
+<li>Font.txt: Illustrates how to load and use additional fonts.</li>
+<li>International.txt: This illustrates how to load and use additional fonts to display
+    international character sets. <b>Note:</b> This file has been saved in
+    <a href="codepages.html#unicode">Unicode (UTF-8)</a> format. In order to generate albums
+    correctly, it is necessary for AlbumEasy to be configured for <i>Unicode (UTF-8)</i> via
+    the <a href="config.html#configDialogue">configuration dialogue box</a>.</li>
+</ul>
+
+<br /><br /><br />
+
+</body>
+</html>

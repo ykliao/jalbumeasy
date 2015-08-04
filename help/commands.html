@@ -1,0 +1,279 @@
+<html>
+<head>
+  <style type="text/css">
+    body {font-family:Arial,Helvetica,Sans-serif;font-size:12px;}
+    h1   {font-size:xx-large;}         /* for some reason px sizes appear to be broken on h* tags */
+    h2   {font-size:large;}
+    .important {color:#b22222; font-weight:bold;}
+  </style>
+</head>
+<body>
+
+
+<h1>AlbumEasy - Commands</h1>
+
+<p>
+This section contains a list of the commands that may be included in an album definition text file.<br />
+<span class="important">Note:</span> All measurements are specified in mm.<br /> <br />
+Commands that output text require that the user specify a font. Available fonts are listed <a href="fonts.html">here</a>.
+<br />
+</p>
+
+<p>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold;">Comments:</td>
+</tr></table>
+</p>
+<p style="margin-left:30px;">
+In order to document an album definition text file it may contain comments which are ignored by AlbumEasy.
+<br />
+The <b>#</b> character is used to demarcate a comment.
+AlbumEasy will ignore all text in a line containing a <b>#</b> character starting from the <b>#</b> until the end of the line.
+<br />
+</p>
+
+
+<p>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold;">The following commands control the appearance of all pages in the album.
+These should be placed at the beginning of each album text file:</td>
+</tr></table>
+</p>
+
+
+<dl style="margin-left:30px;">
+  <dt><b>ALBUM_PAGES_SIZE (width height)</b></dt>
+    <dd>
+    Set the width and height of the album page<br />
+    eg ALBUM_PAGES_SIZE (215.9 279.4) for US Letter size (8.5 x 11)<br />or<br />ALBUM_PAGES_SIZE (210.0 297.0) for A4 paper
+    <br /></dd>
+  <dt><b>ALBUM_PAGES_MARGINS (left right top bottom)</b></dt>
+    <dd>
+    Set the page margins<br />
+    eg ALBUM_PAGES_MARGINS (25.0 12.0 15.0 15.0). Will leave a wider left margin to allow for punch holes
+    <br /></dd>
+  <dt><b>ALBUM_PAGES_MARGINSE (left right top bottom)</b></dt>
+    <dd>
+    Optional margin command to set different margins for even numbered pages.
+    <br /></dd>
+  <dt><b>ALBUM_PAGES_BORDER (outer inner spacing)</b></dt>
+    <dd>
+    Optional command to draw a double line border around the page, just inside the margins.<br />
+    eg ALBUM_PAGES_BORDER (0.5 0.1 1.0). Draw the outer border 0.5mm thick, the inner border 0.1mm thick,
+    with a 1mm space between borders.
+    <br /></dd>
+  <dt><b>ALBUM_PAGES_TITLE (Font Fontsize Title)</b></dt>
+    <dd>
+    Place a title on all pages in the album.<br />
+    eg ALBUM_PAGES_TITLE (TB 16 "Transvaal"). Use Times Roman Bold 16 point to place Transvaal on every page.
+    <br /></dd>
+  <dt><b>ALBUM_PAGES_SPACING (horizontal vertical)</b></dt>
+    <dd>
+    Set the horizontal and vertical spacing for elements on a page.<br />
+    Horizontal spacing controls the distance that text and stamps will be separated from the left and right border.<br />
+    Vertical spacing controls the space between rows of stamps, or blocks of text.
+    eg ALBUM_PAGES_SPACING (6.0 6.0). Will set the horizontal and vertical spacing to 6 mm.
+    <br /></dd>
+</dl>
+
+
+<p>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold;">The following commands apply to individual pages:</td>
+</tr></table>
+</p>
+
+<dl style="margin-left:30px;">
+  <dt><b>PAGE_START</b></dt>
+    <dd>
+    Start a new page. <span class="important">NB</span> There must always be at least one PAGE_START to indicate
+    the first page.
+    <br /></dd>
+
+<dt><b>PAGE_START_VAR (horizontal vertical)</b></dt>
+    <dd>
+    Start a new page, overriding the ALBUM_PAGES_SPACING for this page only<br />
+    See here for a usage <a href="examples.html#pagestartvar">example</a>.
+    <br /></dd>
+
+  <dt><b>PAGE_TEXT (Font Fontsize Text)</b></dt>
+    <dd>
+    Place a paragraph of text on the page. The paragraph is left justified, and formatted to fit between
+    the margins of the page, separated at each side by the horizontal value specified in ALBUM_PAGES_SPACING.<br />
+    eg PAGE_TEXT (HN 10 "Descriptive text"). Place the text using a Helvetica Normal 10 point font.
+    <br /></dd>
+
+  <dt><b>PAGE_TEXT_CENTRE (Font Fontsize Text)</b></dt>
+    <dd>
+    Place text on the page, and centre it.<br />
+    eg PAGE_TEXT_CENTRE (HB 10 "A heading"). Place the text using a Helvetica Bold 10 point font.
+    <br /></dd>
+
+  <dt><b>ROW_START_ES (Font Fontsize border)</b></dt>
+    <dd>
+    Start a row of stamps with equal spacing<br />
+    The stamps are spaced evenly across the page with equal spacing
+    between the stamps as well as the margins.<br />
+    Font and Fontsize specify the font that will be used for any text
+    under or inside the stamp frame. Border specifies the thickness of the line used to
+    draw the stamp frame.<br />
+    eg ROW_START_ES (HN 6 0.1). Use 6 point Helvetica Normal font, with a 0.1mm border for the stamp frames.
+    <br /></dd>
+
+  <dt><b>ROW_START_JS (Font Fontsize border)</b></dt>
+    <dd>
+    Start a row of stamps with justifed spacing<br />
+    The left edge of the leftmost stamp at the left margin, the right edge of the
+    rightmost stamp at the right margin, with equal spacing between the stamps
+    <br /></dd>
+
+  <dt><b>ROW_START_FS (Font Fontsize border spacing)</b></dt>
+    <dd>
+    Start a row of stamps with fixed spacing<br />
+    Stamps are placed with fixed spacing between them, with the row centred between the margins.
+    eg ROW_START_FS (HN 6 0.1 6.0). Use a 6 point Helvetica font, with a 0.1mm border for the stamp frames.
+    stamps are spaced 6.0mm apart.
+    <br /></dd>
+
+  <dt><b>ROW_ALIGN_TOP</b></dt>
+  <dt><b>ROW_ALIGN_MIDDLE</b></dt>
+  <dt><b>ROW_ALIGN_BOTTOM</b></dt>
+  <dd>
+    These commands control the vertical alignment of stamps in a row.
+    Stamps will aligned by either the top or bottom edges or the middle according to command.
+    The alignment will be applied to all subsequent rows until the next ROW_ALIGN_ command.
+    <span class="important">ROW_ALIGN_TOP is the default</span>.<br />
+    See here for <a href="examples.html#rowalign">examples</a>.
+    <br /></dd>
+
+  <dt><b>STAMP_ADD (width height txt0 txt1 txt2 txtBL txtBC txtBR)</b></dt>
+    <dd>
+    Add a stamp<br />
+    The stamp frame is drawn using the specified width and height. Each stamp can have up to 6 text
+    items:<br />
+    txt0, txt1, and txt2 are rows of text to be placed inside the frame.
+    txtBL, txtBC, and txtBR are three text items placed below the frame.<br />
+    eg STAMP_ADD (50.0 28.0   "1 1/2d" "chestnut"  "tete-beche pair" "sg 5a" "" "sacc 4b")
+          will draw a frame 50mm wide, by 28mm high. With three rows of text inside, and two text item underneath.
+    <span class="important">NB</span> All text items must be specified even if not used.<br />
+    eg STAMP_ADD (50.0 28.0  "" ""  "" "" "" "") will draw the frame with no text.
+    <br /></dd>
+
+
+
+  <dt><b>STAMP_ADDX (width height txt0 txt1 txt2 txtBL txtBC txtBR txt1BL txt1BC txt1BR)</b></dt>
+    <dd>
+    Identical to the previous command, but allows for a second row of three text items
+    under the frame. <span class="important">NB</span> All text items must be specified even if not used.
+    eg STAMP_ADDX (50.0 28.0 "" "" "" "" "" "" "" "" "")
+    <br /></dd>
+
+  <dt><b>STAMP_ADD_BLANK (width height)</b></dt>
+    <dd>
+    Add a blank stamp with no frame or text. This is useful for leaving a gap within a row.
+    See here for an <a href="examples.html#stampaddblank">example</a>.
+    <br /></dd>
+
+  <dt><b>STAMP_ADD_TRIANGLE (width height txt0 txt1 txt2 txtBL txtBC txtBR)</b></dt>
+    <dd>
+    Add a triangle shaped stamp.
+    Parameters are identical to the STAMP_ADD command above.
+    <br /></dd>
+
+  <dt><b>STAMP_ADD_TRIANGLE_INV (width height txt0 txt1 txt2 txtBL txtBC txtBR)</b></dt>
+    <dd>
+    Add an inverted triangle shaped stamp.
+    Parameters are identical to the STAMP_ADD command above.
+    <br /></dd>
+
+  <dt><b>STAMP_ADD_DIAMOND (width height txt0 txt1 txt2 txtBL txtBC txtBR)</b></dt>
+    <dd>
+    Add a diamond shaped stamp.
+    Parameters are identical to the STAMP_ADD command above.
+    <br /></dd>
+</dl>
+
+
+<p>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold;">Text continuation and special characters:</td>
+</tr></table>
+</p>
+<p style="margin-left:30px;">
+For convenience, text placed using the PAGE_TEXT and PAGE_TEXT_CENTRE may be continued over multiple
+lines.  e.g:<br />
+<code>
+&nbsp; &nbsp; PAGE_TEXT (HN 10 "This is all "\<br />
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; "one "\<br />
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; "line of text")<br />
+</code>
+<br />Note the use of the <b>\</b> character to indicate line continuation.<br /><br />
+The following characters have a special meaning within a text string:
+  <table>
+ <tr><td><b>\n </b></td><td>Start a new line</td></tr>
+ <tr><td><b>\" </b></td><td>Insert a <b>"</b> character</td></tr>
+ <tr><td><b>\\ </b></td><td>Insert a <b>\</b> character</td></tr>
+  </table>
+</p>
+<p style="margin-left:30px;">
+ eg. To place two lines of text centred on the page<br />
+<code>
+ PAGE_TEXT_CENTRE (HS 12 "First line of text <b>\n</b> Second Line.");<br />
+</code>
+
+<br />
+</p>
+
+
+
+
+
+<p>
+<table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold;">Custom fonts:</td>
+</tr></table>
+</p>
+
+<dl style="margin-left:30px;">
+
+  <a name="albumDefineFont"></a>
+  <dt><b>ALBUM_DEFINE_FONT (fontId "fontName" Encoding)</b></dt>
+    <dd>
+    This command assigns an external font to a user defined fontId.
+    A maximum of 12 external fonts may be assigned per album.<br />
+    <b>fontId</b>: Is used to identify the font and can be any unique name that is between 2 and 8 characters long.<br />
+    <b>"fontname"</b> (which must include the quotes): This can be chosen from the available fonts listed in the
+    <a href="fonts.html#fontsDialogue">Available Fonts Dialogue Box</a>, this lists each font along
+    with the code pages supported by the font.<br />
+    <b>Encoding</b>: This is optional, if given it must be one of the listed code pages for the font.
+    If left blank the default <a href="codepages.html#latin1">Latin 1</a> character set will be use.<br />
+
+    For example to add three fonts:<br />
+    <code>
+    &nbsp; &nbsp; ALBUM_DEFINE_FONT(PENGUIN  "Penguin Attack")<br />
+    &nbsp; &nbsp; ALBUM_DEFINE_FONT(CYRILLIC "DejaVu Sans"   CP1251)<br />
+    &nbsp; &nbsp; ALBUM_DEFINE_FONT(HEBREW   "DejaVu Sans"   CP1255)<br />
+    </code>
+   The first of which the user has chosen to identify as <i>PENGUIN</i> refers to a font called
+   <i>Penguin Attack</i> using the default character set.<br />
+   The second which the user chose to identify as <i>CYRILLIC</i> will load the <i>DejaVu Sans</i> font using the Cyrillic character set.<br />
+   The third which the user has chosen to call <i>HEBREW</i> also refers to the <i>DejaVu Sans</i> font but using the Hebrew character set.<br />
+   Then to output text using the <i>Penguin Attack</i> font in 16 points.<br />
+    <code>
+    &nbsp; &nbsp; PAGE_TEXT (PENGUIN 16 "This is text using the Penguin Attack font." )
+    </code>
+    <br /></dd>
+</dl>
+
+
+
+
+<br /><br /><br />
+
+</body>
+</html>

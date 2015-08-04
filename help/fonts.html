@@ -1,0 +1,102 @@
+<html>
+<head>
+  <style type="text/css">
+    body {font-family:Arial,Helvetica,Sans-serif;font-size:12px;}
+    h1   {font-size:xx-large;}         /* for some reason px sizes appear to be broken on h* tags */
+    h2   {font-size:large;}
+  </style>
+</head>
+<body>
+
+<h1>Fonts</h1>
+<br />
+
+<a name="standardFonts"></a><table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold; font-size:large;">---------- Standard Fonts ----------</td>
+</tr></table>
+
+<p>
+AlbumEasy provides a number of built-in fonts that may be selected for generating text.
+The built-in fonts are comprised of the characters in the <a href="codepages.html#latin1">Latin 1</a> character
+set which should be sufficient for displaying text in most Western European languages.<br />
+Each built-in font is assigned a unique 2 character identifier which is used to associate the font with a text item:
+<br />
+  <table>
+ <tr><td><b>Identifier</b></td><td><b> &nbsp; </b></td><td><b>Name</b></td></tr>
+ <tr><td><b> CN </b></td><td><b> - </b></td><td>Courier Normal</td></tr>
+ <tr><td><b> CB </b></td><td><b> - </b></td><td>Courier Bold</td></tr>
+ <tr><td><b> CI </b></td><td><b> - </b></td><td>Courier Italic</td></tr>
+ <tr><td><b> CS </b></td><td><b> - </b></td><td>Courier Bold-Italic</td></tr>
+ <tr><td><b> TN </b></td><td><b> - </b></td><td>Times Roman Normal</td></tr>
+ <tr><td><b> TB </b></td><td><b> - </b></td><td>Times Roman Bold</td></tr>
+ <tr><td><b> TI </b></td><td><b> - </b></td><td>Times Roman Italic</td></tr>
+ <tr><td><b> TS </b></td><td><b> - </b></td><td>Times Roman Bold-Italic</td></tr>
+ <tr><td><b> HN </b></td><td><b> - </b></td><td>Helvetica Normal</td></tr>
+ <tr><td><b> HB </b></td><td><b> - </b></td><td>Helvetica Bold</td></tr>
+ <tr><td><b> HI </b></td><td><b> - </b></td><td>Helvetica Italic</td></tr>
+ <tr><td><b> HS </b></td><td><b> - </b></td><td>Helvetica Bold-Italic</td></tr>
+  </table>
+</p>
+
+<p>
+For example to output text in a 12 point <i>Times Roman Normal</i> font the <i>TN</i> identifier would be used:<br />
+<code>PAGE_TEXT (TN 12 "Some text")</code>
+</p>
+
+<br />
+<br />
+<a name="customFonts"></a><table><tr>
+<td style="padding-left:4px;padding-right:6px;"><img src="images/stampBullet.png" width="20" height="24" alt="" border="10"></td>
+<td style="font-weight:bold; font-size:large;">---------- Custom Fonts ----------</td>
+</tr></table>
+
+<p>
+In addition to the built in fonts AlbumEasy is also able to display text using many of the fonts
+installed on a user's system.
+To make use of a font it is necessary to include it via the <a href="commands.html#albumDefineFont">ALBUM_DEFINE_FONT</a> command.
+This command requires the font name and optionally the desired <i>Code Page</i> (character set).
+</p>
+
+<p>
+Selecting the <i>Font</i> button on the AlbumEasy tool-bar will display the
+<i>Available Fonts Dialogue Box</i>.
+</p>
+
+<p>
+<a name="fontsDialogue"></a><b>Available Fonts Dialogue Box</b>
+</p>
+<p>
+<img src="images/dlg_fonts.png" width="462" height="238" alt="Available Fonts Dialogue Box">
+</p>
+
+<p>
+This dialogue box lists the fonts that are compatible with AlbumEasy:
+ <ul>
+ <li>The first column contains the font name.</li>
+ <li>The second column contains a list of <i>code pages</i> supported by the font along with the human friendly
+ character set name in parenthesis.</li>
+ <li>The third column, provided purely for informational purposes contains the name of the actual font file.</li>
+ </ul>
+</p>
+
+
+<p>
+By default AlbumEasy only searches the local <i>fonts</i> folder within the AlbumEasy folder for fonts,
+so if only a few fonts are in regular use these should be copied to this folder.
+Alternatively AlbumEasy may be configured via the <a href="config.html#configDialogue">configuration dialogue box</a>
+to search a user's computer for all fonts, which can however take much more time.
+</p>
+
+<p>
+Not all fonts are compatible with AlbumEasy, so if you are wondering why your favourite font is
+not listed, then it is probably because it is not compatible. Selecting the
+<i>Display the list of incompatible fonts</i> check-box in the
+<a href="config.html#configDialogue">configuration dialogue box</a> will display a list of fonts
+that have been found but are incompatible with AlbumEasy.
+</p>
+
+<br /><br /><br />
+
+</body>
+</html>

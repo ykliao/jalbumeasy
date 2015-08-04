@@ -1,0 +1,65 @@
+#!/bin/sh
+
+##################################################################################################
+# Shell script called by the Makes script for creating the Linux compressed archive
+##################################################################################################
+
+SOURCE_DIR=../..
+
+set -e
+
+
+rm -rf TAR/*                                                          #start with a clean install
+echo Creating Linux packaging directories
+mkdir -p TAR/AlbumEasy
+mkdir -p TAR/AlbumEasy/fonts
+mkdir -p TAR/AlbumEasy/help
+mkdir -p TAR/AlbumEasy/help/images
+mkdir -p TAR/AlbumEasy/examples
+
+cp ./CONFIG                                        TAR/AlbumEasy
+cp ./readme-linux.txt                              TAR/AlbumEasy
+cp ../VERSION                                      TAR/AlbumEasy
+
+
+echo Copying application
+cp $SOURCE_DIR/AlbumEasy                           TAR/AlbumEasy
+cp $SOURCE_DIR/licence.txt                         TAR/AlbumEasy
+cp $SOURCE_DIR/resources/AlbumEasyIcon48x48.png    TAR/AlbumEasy
+
+echo Copying fonts
+cp $SOURCE_DIR/fonts/DejaVuSans.ttf                TAR/AlbumEasy/fonts
+cp $SOURCE_DIR/fonts/DejaVuSerif.ttf               TAR/AlbumEasy/fonts
+cp $SOURCE_DIR/fonts/PenguinAttack.ttf             TAR/AlbumEasy/fonts
+
+echo Copying help files
+cp $SOURCE_DIR/help/codepages.html                 TAR/AlbumEasy/help
+cp $SOURCE_DIR/help/commands.html                  TAR/AlbumEasy/help
+cp $SOURCE_DIR/help/config.html                    TAR/AlbumEasy/help
+cp $SOURCE_DIR/help/examples.html                  TAR/AlbumEasy/help
+cp $SOURCE_DIR/help/fonts.html                     TAR/AlbumEasy/help
+cp $SOURCE_DIR/help/getstarted.html                TAR/AlbumEasy/help
+cp $SOURCE_DIR/help/index.html                     TAR/AlbumEasy/help
+cp $SOURCE_DIR/help/licence.html                   TAR/AlbumEasy/help
+
+cp $SOURCE_DIR/help/images/chkDeselectedBullet.png   TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/chkSelectedBullet.png     TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/cmnds_page_start_var.png  TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/cmnds_row_alignment.png   TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/cmnds_stamp_add_blank.png TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/code_table.png            TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/dlg_config.png            TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/dlg_fonts.png             TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/radioSelectedBullet.png   TAR/AlbumEasy/help/images
+cp $SOURCE_DIR/help/images/stampBullet.png          TAR/AlbumEasy/help/images
+
+
+echo Copying examples
+cp  $SOURCE_DIR/examples/AlbumSample.txt           TAR/AlbumEasy/examples
+cp  $SOURCE_DIR/examples/Font.txt                  TAR/AlbumEasy/examples
+cp  $SOURCE_DIR/examples/International.txt         TAR/AlbumEasy/examples
+
+
+echo building ${1}
+cd TAR
+tar -czvf ${SOURCE_DIR}/../${1}.tgz AlbumEasy/*

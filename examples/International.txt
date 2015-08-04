@@ -1,0 +1,40 @@
+#####################################################################################
+#
+# A sample AlbumEasy file showing how to load and use fonts, including international
+# fonts.
+#
+# NOTE: For the international character sets to be processed correctly,
+#       AlbumEasy must be configured to use the Unicode(UTF-8) encoding via the
+#       configuration dialogue box.
+#
+#####################################################################################
+
+ALBUM_PAGES_SIZE     (210.0 297.0)                                #sized A4
+ALBUM_PAGES_MARGINS  (15.0 15.0 15.0 15.0 )
+ALBUM_PAGES_BORDER   (0.5 0.1 1.0)
+ALBUM_PAGES_SPACING  (5.0 5.0)
+ALBUM_PAGES_TITLE    (TB 16  "International Font Examples")
+
+
+# load three fonts, the first given the identifier PENGUIN will use the default Latin1 character set
+# the second given the identifier CYRILLIC will use the CP1251 character set which contains Cyrillic
+# characters. The third which will be identified as HEBREW will use the CP1255 character set which
+# contains Hebrew characters.
+
+ALBUM_DEFINE_FONT(PENGUIN  "Penguin Attack" )
+ALBUM_DEFINE_FONT(CYRILLIC "DejaVu SANS"   CP1251)
+ALBUM_DEFINE_FONT(HEBREW   "DejaVu SANS"   CP1255)
+
+
+PAGE_START
+
+PAGE_TEXT (PENGUIN 16 "Penguin Attack is a fancy font. But not to everyone's taste." )
+PAGE_TEXT (HN 14 "The far more sedate Helvetica will probably be more appealing to philatelists!")
+PAGE_TEXT (HN 10 "\nThe following lines of text should contain Cyrillic and Hebrew "\
+                 "characters. If instead, gibberish appears, then it is likely that AlbumEasy "\
+                 "has not been configured to use Unicode(UTF-8) encoding.")
+
+
+PAGE_TEXT (CYRILLIC 14 "Cyrillic (CP1251):АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ")
+PAGE_TEXT (HEBREW 14 "Hebrew(CP1255):תשרקצץפףעסנןמםלכךיטחזוהדגבא")
+

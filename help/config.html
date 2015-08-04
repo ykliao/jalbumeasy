@@ -1,0 +1,65 @@
+<html>
+<head>
+  <style type="text/css">
+    body {font-family:Arial,Helvetica,Sans-serif;font-size:12px;}
+    h1   {font-size:xx-large;}         /* for some reason px sizes appear to be broken on h* tags */
+    h2   {font-size:large;}
+  </style>
+</head>
+<body>
+
+<a name="configDialogue"></a><h1>Configuration Dialogue Box</h1>
+
+<p>
+  <img src="images/dlg_config.png" width="410" height="220" alt="Configuration Dialogue Box">
+</p>
+
+<p>
+<b>Character Encoding:</b>
+</p>
+<p style="margin-left: 24px;">
+  Selects whether the input file is to be interpreted as containing characters from either
+  the <a href="codepages.html#latin1">Latin 1</a> or
+  <a href="codepages.html#unicode">Unicode (UTF-8)</a> character sets.<br />
+
+<br />
+For most Western European languages this setting will have little effect and can be left
+set to <i>Latin 1</i> irrespective as to what format the input file was actually saved in.
+The <i>Latin 1</i> setting will also ensure that the "Euro" and "Pound Stirling" characters are generated
+correctly, unless the  text editor was specifically set to save files in UTF-8.<br />
+However, if the intention is to use international character sets such as
+Hebrew, Cyrillic, etc. then it is necessary to select <i>Unicode (UTF-8)</i> and the input files
+must also be saved in <i>UTF-8</i> format.
+</p>
+
+<p>
+<b>Include system fonts when searching for fonts:</b>
+ <dl>
+ <dd><img src="images/chkSelectedBullet.png" width="13" height="11">&nbsp;
+     When selected, AlbumEasy will search the whole system for additional fonts.</dd>
+ <dd><img src="images/chkDeselectedBullet.png" width="13" height="11">&nbsp;
+     When deselected, AlbumEasy will only search its own local <i>fonts</i> folder.</dd>
+ </dl>
+</p>
+<p style="margin-left: 24px;">
+Searching the whole system for fonts can be a time consuming operation,
+so if only a few fonts are in regular use these should be copied to the local <i>fonts</i>
+folder within the AlbumEasy folder.
+
+</p>
+
+<p>
+<a name="incompatibleList"></a><b>Display the list of incompatible fonts in the font list dialogue box:</b>
+ <dl>
+ <dd><img src="images/chkSelectedBullet.png" width="13" height="11">&nbsp;
+     When selected, Album Easy will display the list of fonts that are compatible with AlbumEasy as well as the list of fonts
+     that are not compatible in the <a href="fonts.html#fontsDialogue">available fonts dialog box</a>.</dd>
+ <dd><img src="images/chkDeselectedBullet.png" width="13" height="11">&nbsp;
+     When deselected, AlbumEasy will only display the list of fonts that are compatible.</dd>
+ </dl>
+</p>
+
+<br /><br /><br />
+
+</body>
+</html>
